@@ -46,6 +46,10 @@
                 [tempPhotos addObject:[Photo photoWithDictionary:photoDict]];
             }
             self.photoArray = [tempPhotos copy];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            });
         }
 
     }];

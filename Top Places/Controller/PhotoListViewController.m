@@ -7,6 +7,7 @@
 //
 
 #import "PhotoListViewController.h"
+#import "Photo.h"
 
 @interface PhotoListViewController ()
 
@@ -44,24 +45,24 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.photoArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLE_CELL_PHOTO forIndexPath:indexPath];
     
     // Configure the cell...
+    Photo *photo = self.photoArray[indexPath.row];
+    cell.textLabel.text = photo.title;
+    cell.detailTextLabel.text = photo.description;
     
     return cell;
 }

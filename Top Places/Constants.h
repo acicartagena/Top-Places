@@ -10,5 +10,6 @@
 
 static NSString *const TABLE_CELL_ID_TOP_PLACES  = @"TopPlacesCell";
 static NSString *const TABLE_CELL_ID_MOST_RECENT = @"MostRecentCell";
+static NSString *const TABLE_CELL_PHOTO = @"PhotoCell";
 static NSString *const SEGUE_PLACE_PHOTOS = @"Get Place Photos";
 static int const MAX_PLACE_PHOTOS_COUNT = 50;
