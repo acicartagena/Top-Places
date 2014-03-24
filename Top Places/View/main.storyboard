@@ -52,7 +52,7 @@
             </objects>
             <point key="canvasLocation" x="1418" y="62"/>
         </scene>
-        <!--Most Recent View Controller - Most Recent-->
+        <!--Most Recent View Controller - Most Recent Photos-->
         <scene sceneID="epo-7j-7il">
             <objects>
                 <tableViewController id="Cy4-Cs-Nk7" customClass="MostRecentViewController" sceneMemberID="viewController">
@@ -75,11 +75,41 @@
                             <outlet property="delegate" destination="Cy4-Cs-Nk7" id="bm3-an-EVs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Most Recent" id="tvn-BC-yey"/>
+                    <navigationItem key="navigationItem" title="Most Recent Photos" id="tvn-BC-yey"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXe-tF-nFu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1418" y="749"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="hhG-ku-xR1">
+            <objects>
+                <viewController id="oKG-d6-MWS" customClass="PhotoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kzs-du-T8P"/>
+                        <viewControllerLayoutGuide type="bottom" id="qJX-j7-iUU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kkR-jr-n7y" customClass="UIScrollView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="hJI-0r-n0b">
+                                <rect key="frame" x="150" y="250" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Yev-b4-o2g"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="hJI-0r-n0b" id="40y-4n-rSb"/>
+                        <outlet property="scrollView" destination="kkR-jr-n7y" id="9tg-uc-N7U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aya-50-lBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2411" y="419"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2GG-Mi-mBD">
@@ -100,7 +130,7 @@
             </objects>
             <point key="canvasLocation" x="344" y="405"/>
         </scene>
-        <!--Place Photos View Controller-->
+        <!--Place Photos View Controller - Photos-->
         <scene sceneID="zeo-Lr-xYs">
             <objects>
                 <tableViewController id="ANN-15-gCe" customClass="PlacePhotosViewController" sceneMemberID="viewController">
@@ -132,6 +162,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="oKG-d6-MWS" kind="push" identifier="Get Photo" id="2mP-mV-5Au"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -139,7 +172,7 @@
                             <outlet property="delegate" destination="ANN-15-gCe" id="4eF-Vn-i4H"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="reV-6f-1B2"/>
+                    <navigationItem key="navigationItem" title="Photos" id="reV-6f-1B2"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pXy-o7-dk5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

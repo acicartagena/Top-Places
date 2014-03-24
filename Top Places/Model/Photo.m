@@ -29,8 +29,8 @@
 
 - (NSString *)title
 {
-    if (!_title){
-        if (!_description){
+    if (!_title || [_title isEqualToString:@""]){
+        if (!_description || [_description isEqualToString:@""]){
             _title = @"Unknown";
         }else{
             _title = _description;

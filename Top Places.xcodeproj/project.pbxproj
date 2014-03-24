@@ -31,6 +31,7 @@
 		559C4B3B18E01A2200EDE738 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 559C4B3A18E01A2200EDE738 /* Place.m */; };
 		559C4B3E18E03CBC00EDE738 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 559C4B3D18E03CBC00EDE738 /* Photo.m */; };
 		559C4B4118E0421E00EDE738 /* PlacePhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559C4B4018E0421E00EDE738 /* PlacePhotosViewController.m */; };
+		60003CFC18E0862C00B9B8BF /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60003CFB18E0862C00B9B8BF /* PhotoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		559C4B3D18E03CBC00EDE738 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		559C4B3F18E0421E00EDE738 /* PlacePhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacePhotosViewController.h; sourceTree = "<group>"; };
 		559C4B4018E0421E00EDE738 /* PlacePhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacePhotosViewController.m; sourceTree = "<group>"; };
+		60003CFA18E0862C00B9B8BF /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		60003CFB18E0862C00B9B8BF /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +198,8 @@
 				5535E00018D7ECE800DA2CCC /* TopPlacesViewController.m */,
 				5535E00218D7ED1500DA2CCC /* MostRecentViewController.h */,
 				5535E00318D7ED1500DA2CCC /* MostRecentViewController.m */,
+				60003CFA18E0862C00B9B8BF /* PhotoViewController.h */,
+				60003CFB18E0862C00B9B8BF /* PhotoViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				559C4B3B18E01A2200EDE738 /* Place.m in Sources */,
 				559C4B3E18E03CBC00EDE738 /* Photo.m in Sources */,
 				559C4B4118E0421E00EDE738 /* PlacePhotosViewController.m in Sources */,
+				60003CFC18E0862C00B9B8BF /* PhotoViewController.m in Sources */,
 				5535E00118D7ECE800DA2CCC /* TopPlacesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

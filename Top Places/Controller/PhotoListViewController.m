@@ -8,6 +8,8 @@
 
 #import "PhotoListViewController.h"
 #import "Photo.h"
+#import "FlickrFetcher.h"
+#import "PhotoViewController.h"
 
 @interface PhotoListViewController ()
 
@@ -106,16 +108,23 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([sender isKindOfClass:[UITableViewCell class]] && [segue.identifier isEqualToString:SEGUE_PHOTO] && [segue.destinationViewController isKindOfClass:[PhotoViewController class]]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        if (indexPath) {
+            PhotoViewController *vc = [segue destinationViewController];
+            //TODO: coredata please
+            vc.photo = self.photoArray[indexPath.row];
+            vc.navigationItem.title = vc.photo.title;
+        }
+    }
 }
 
- */
+
 
 @end

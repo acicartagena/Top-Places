@@ -136,6 +136,7 @@ static NSString *const SUBTITLE_KEY = @"subtitle location";
             PlacePhotosViewController *vc = [segue destinationViewController];
             //TODO: coredata please
             vc.place = ((self.places[indexPath.section])[@"places"])[indexPath.row];
+            vc.navigationItem.title = [NSString stringWithFormat:@"%@'s Photos",vc.place.titleLocation];
         }
     }
 }
