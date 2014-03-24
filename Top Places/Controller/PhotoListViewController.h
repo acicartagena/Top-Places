@@ -1,5 +1,5 @@
 //
-//  MostRecentViewController.h
+//  PhotoListViewController.h
 //  Top Places
 //
 //  Created by Angela Cartagena on 3/18/14.
@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PhotoListViewController.h"
 
-@interface MostRecentViewController : PhotoListViewController
+@interface PhotoListViewController : UITableViewController
 
+@property (strong, nonatomic) __block NSArray *photoArray;
 
 @end

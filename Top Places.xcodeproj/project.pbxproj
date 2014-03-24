@@ -27,8 +27,10 @@
 		5535DFFE18D7EC6B00DA2CCC /* main_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5535DFFD18D7EC6B00DA2CCC /* main_ipad.storyboard */; };
 		5535E00118D7ECE800DA2CCC /* TopPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5535E00018D7ECE800DA2CCC /* TopPlacesViewController.m */; };
 		5535E00418D7ED1500DA2CCC /* MostRecentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5535E00318D7ED1500DA2CCC /* MostRecentViewController.m */; };
-		5535E00718D7F0C300DA2CCC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5535E00618D7F0C300DA2CCC /* Constants.m */; };
-		5535E01018D8061B00DA2CCC /* URLFetchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5535E00F18D8061B00DA2CCC /* URLFetchManager.m */; };
+		5535E01318D80FFA00DA2CCC /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5535E01218D80FFA00DA2CCC /* PhotoListViewController.m */; };
+		559C4B3B18E01A2200EDE738 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 559C4B3A18E01A2200EDE738 /* Place.m */; };
+		559C4B3E18E03CBC00EDE738 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 559C4B3D18E03CBC00EDE738 /* Photo.m */; };
+		559C4B4118E0421E00EDE738 /* PlacePhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559C4B4018E0421E00EDE738 /* PlacePhotosViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,9 +72,14 @@
 		5535E00218D7ED1500DA2CCC /* MostRecentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostRecentViewController.h; sourceTree = "<group>"; };
 		5535E00318D7ED1500DA2CCC /* MostRecentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostRecentViewController.m; sourceTree = "<group>"; };
 		5535E00518D7F0C300DA2CCC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		5535E00618D7F0C300DA2CCC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		5535E00E18D8061B00DA2CCC /* URLFetchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLFetchManager.h; sourceTree = "<group>"; };
-		5535E00F18D8061B00DA2CCC /* URLFetchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLFetchManager.m; sourceTree = "<group>"; };
+		5535E01118D80FFA00DA2CCC /* PhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
+		5535E01218D80FFA00DA2CCC /* PhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
+		559C4B3918E01A2200EDE738 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		559C4B3A18E01A2200EDE738 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		559C4B3C18E03CBC00EDE738 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		559C4B3D18E03CBC00EDE738 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		559C4B3F18E0421E00EDE738 /* PlacePhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacePhotosViewController.h; sourceTree = "<group>"; };
+		559C4B4018E0421E00EDE738 /* PlacePhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacePhotosViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,9 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				5535E00518D7F0C300DA2CCC /* Constants.h */,
-				5535E00618D7F0C300DA2CCC /* Constants.m */,
-				5535E00E18D8061B00DA2CCC /* URLFetchManager.h */,
-				5535E00F18D8061B00DA2CCC /* URLFetchManager.m */,
 				5535DFF218D7E0EC00DA2CCC /* Controller */,
 				5535DFF318D7E0EC00DA2CCC /* Model */,
 				5535DFF418D7E0EC00DA2CCC /* View */,
@@ -183,6 +187,10 @@
 		5535DFF218D7E0EC00DA2CCC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5535E01118D80FFA00DA2CCC /* PhotoListViewController.h */,
+				5535E01218D80FFA00DA2CCC /* PhotoListViewController.m */,
+				559C4B3F18E0421E00EDE738 /* PlacePhotosViewController.h */,
+				559C4B4018E0421E00EDE738 /* PlacePhotosViewController.m */,
 				5535DFFF18D7ECE800DA2CCC /* TopPlacesViewController.h */,
 				5535E00018D7ECE800DA2CCC /* TopPlacesViewController.m */,
 				5535E00218D7ED1500DA2CCC /* MostRecentViewController.h */,
@@ -195,6 +203,10 @@
 			isa = PBXGroup;
 			children = (
 				5535DFD118D7E01400DA2CCC /* Top_Places.xcdatamodeld */,
+				559C4B3918E01A2200EDE738 /* Place.h */,
+				559C4B3A18E01A2200EDE738 /* Place.m */,
+				559C4B3C18E03CBC00EDE738 /* Photo.h */,
+				559C4B3D18E03CBC00EDE738 /* Photo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,10 +338,12 @@
 				5535E00418D7ED1500DA2CCC /* MostRecentViewController.m in Sources */,
 				5535DFD318D7E01400DA2CCC /* Top_Places.xcdatamodeld in Sources */,
 				5535DFD018D7E01400DA2CCC /* AppDelegate.m in Sources */,
+				5535E01318D80FFA00DA2CCC /* PhotoListViewController.m in Sources */,
 				5535DFFA18D7E10200DA2CCC /* FlickrFetcher.m in Sources */,
-				5535E01018D8061B00DA2CCC /* URLFetchManager.m in Sources */,
 				5535DFCC18D7E01400DA2CCC /* main.m in Sources */,
-				5535E00718D7F0C300DA2CCC /* Constants.m in Sources */,
+				559C4B3B18E01A2200EDE738 /* Place.m in Sources */,
+				559C4B3E18E03CBC00EDE738 /* Photo.m in Sources */,
+				559C4B4118E0421E00EDE738 /* PlacePhotosViewController.m in Sources */,
 				5535E00118D7ECE800DA2CCC /* TopPlacesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,6 +547,7 @@
 				5535DFEE18D7E01400DA2CCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5535DFEF18D7E01400DA2CCC /* Build configuration list for PBXNativeTarget "Top PlacesTests" */ = {
 			isa = XCConfigurationList;
@@ -541,6 +556,7 @@
 				5535DFF118D7E01400DA2CCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -56,8 +56,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = TABLE_CELL_ID_MOST_RECENT;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLE_CELL_ID_MOST_RECENT forIndexPath:indexPath];
     
     // Configure the cell...
     
