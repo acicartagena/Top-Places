@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Photo.h"
 
-@interface PhotoViewController : UIViewController<UIScrollViewDelegate>
+@interface PhotoViewController : UIViewController<UIScrollViewDelegate, NSURLSessionDownloadDelegate>
 
 @property (strong, nonatomic) NSString *imageURL;
 @property (strong, nonatomic) Photo *photo;

@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UIImage *image;
@@ -47,9 +48,8 @@
     self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
     
     // self.scrollView could be nil on the next line if outlet-setting has not happened yet
-    self.scrollView.contentSize = self.image ? self.image.size : CGSizeZero;
-    
-    [self.activityIndicator stopAnimating];
+    self.scrollView.contentSize = image ? image.size : CGSizeZero;
+
 }
 
 - (void)setScrollView:(UIScrollView *)scrollView
@@ -66,7 +66,6 @@
     self.scrollView.contentSize = self.image ? self.image.size : CGSizeZero;
 }
 
-
 - (void)setPhoto:(Photo *)photo
 {
     _photo = photo;
@@ -79,33 +78,53 @@
     
     if (self.photo)
     {
-        [self.activityIndicator startAnimating];
+        self.progressView.hidden = NO;
+        self.progressView.progress = 0.0f;
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        
         NSURLRequest *request = [NSURLRequest requestWithURL:[FlickrFetcher URLforPhoto:@{@"farm":self.photo.farm, @"server":self.photo.server, @"id":self.photo.photoId, @"secret":self.photo.secret, @"originalsecret":self.photo.originalSecret, @"originalformat":self.photo.originalFormat} format:FlickrPhotoFormatOriginal]];
         
-        // another configuration option is backgroundSessionConfiguration (multitasking API required though)
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
         
-        // create the session without specifying a queue to run completion handler on (thus, not main queue)
-        // we also don't specify a delegate (since completion handler is all we need)
-        NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+        NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request];
         
-        NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request
-                                                        completionHandler:^(NSURL *localfile, NSURLResponse *response, NSError *error) {
-                                                            // this handler is not executing on the main queue, so we can't do UI directly here
-                                                            if (!error) {
-//                                                                if ([request.URL isEqual:self.imageURL]) {
-                                                                    // UIImage is an exception to the "can't do UI here"
-                                                                    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:localfile]];
-                                                                    // but calling "self.image =" is definitely not an exception to that!
-                                                                    // so we must dispatch this back to the main queue
-                                                                    dispatch_async(dispatch_get_main_queue(), ^{ self.image = image;
-                                                                        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];});
-//                                                                }
-                                                            }
-                                                        }];
-        [task resume]; // don't forget that all NSURLSession tasks start out suspended!
+        [task resume];
     }
+}
+
+#pragma mark - NSURLSessionDownload Delegate
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
+didFinishDownloadingToURL:(NSURL *)location
+{
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.image = image;
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        self.progressView.hidden = YES;
+    });
+}
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
+      didWriteData:(int64_t)bytesWritten
+ totalBytesWritten:(int64_t)totalBytesWritten
+totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+{
+    float progress = (float)totalBytesWritten/totalBytesExpectedToWrite;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.progressView.progress = progress;
+    });
+    
+}
+
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
+ didResumeAtOffset:(int64_t)fileOffset
+expectedTotalBytes:(int64_t)expectedTotalBytes
+{
+    
 }
 
 #pragma mark - UIScrollViewDelegate

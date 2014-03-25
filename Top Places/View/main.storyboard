@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5Oe-Uz-lDf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5Oe-Uz-lDf">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Top Places View Controller - Top Places-->
@@ -86,30 +86,33 @@
             <objects>
                 <viewController id="oKG-d6-MWS" customClass="PhotoViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kzs-du-T8P"/>
-                        <viewControllerLayoutGuide type="bottom" id="qJX-j7-iUU"/>
+                        <viewControllerLayoutGuide type="top" id="ss7-5F-iX4"/>
+                        <viewControllerLayoutGuide type="bottom" id="ILj-qU-a59"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kkR-jr-n7y" customClass="UIScrollView">
+                    <view key="view" contentMode="scaleToFill" id="U1x-Iv-kg9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="hJI-0r-n0b">
-                                <rect key="frame" x="150" y="250" width="20" height="20"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p54-jV-tsT">
+                                <rect key="frame" x="85" y="259" width="150" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </activityIndicatorView>
+                            </progressView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhe-e7-7GZ">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Yev-b4-o2g"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="hJI-0r-n0b" id="40y-4n-rSb"/>
-                        <outlet property="scrollView" destination="kkR-jr-n7y" id="9tg-uc-N7U"/>
+                        <outlet property="progressView" destination="p54-jV-tsT" id="sqv-jm-Kr6"/>
+                        <outlet property="scrollView" destination="hhe-e7-7GZ" id="42B-vg-fzR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aya-50-lBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2411" y="419"/>
+            <point key="canvasLocation" x="2405" y="555"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2GG-Mi-mBD">
@@ -163,7 +166,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="oKG-d6-MWS" kind="push" identifier="Get Photo" id="2mP-mV-5Au"/>
+                                    <segue destination="oKG-d6-MWS" kind="push" identifier="Get Photo" id="jVY-su-986"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
