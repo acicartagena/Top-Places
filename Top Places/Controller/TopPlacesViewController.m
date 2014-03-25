@@ -38,7 +38,12 @@ static NSString *const SUBTITLE_KEY = @"subtitle location";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self getPhotos];
     
+}
+
+- (void)getPhotos
+{
     NSURL *url = [FlickrFetcher URLforTopPlaces];
     
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration ephemeralSessionConfiguration];
@@ -63,7 +68,7 @@ static NSString *const SUBTITLE_KEY = @"subtitle location";
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                 [self.tableView reloadData];
+                [self.tableView reloadData];
                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             });
         }
@@ -77,13 +82,6 @@ static NSString *const SUBTITLE_KEY = @"subtitle location";
         _places = [[NSMutableArray alloc] initWithCapacity:100];
     }
     return _places;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    
-    _places = nil;
 }
 
 #pragma mark - Table view data source

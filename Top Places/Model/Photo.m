@@ -23,6 +23,7 @@
     photo.originalSecret = photoDict[@"originalsecret"];
     photo.originalFormat = photoDict[@"originalformat"];
     photo.owner = photoDict[@"ownername"];
+    photo.photoUrl = photoDict[FLICKR_PHOTO_PHOTO_URL] ? [NSURL URLWithString:photoDict[FLICKR_PHOTO_PHOTO_URL]]:nil;
     
     return photo;
 }
@@ -38,5 +39,14 @@
     }
     return _title;
 }
+
+- (NSURL *)photoUrl
+{
+    if (!_photoUrl) {
+        _photoUrl = [FlickrFetcher URLforPhoto:@{@"farm":self.farm, @"server":self.server, @"id":self.photoId, @"secret":self.secret, @"originalsecret":self.originalSecret, @"originalformat":self.originalFormat} format:FlickrPhotoFormatLarge];
+    }
+    return _photoUrl;
+}
+
 
 @end

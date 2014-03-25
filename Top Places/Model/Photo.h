@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSURL *photoUrl;
 
 @property (strong, nonatomic) NSNumber *farm;
 @property (strong, nonatomic) NSNumber *server;

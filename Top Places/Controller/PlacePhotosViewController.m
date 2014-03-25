@@ -16,20 +16,8 @@
 
 @implementation PlacePhotosViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)getPhotos
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
     NSURL *url = [FlickrFetcher URLforPhotosInPlace:self.place.placeId maxResults:MAX_PLACE_PHOTOS_COUNT];
     
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration ephemeralSessionConfiguration];
@@ -51,17 +39,35 @@
                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             });
         }
-
+        
     }];
     [task resume];
-
-    
 }
 
-- (void)didReceiveMemoryWarning
+
+//TODO: core data pleeeeaaase
+- (void)saveToRecentViewedPhotos:(Photo *)photo
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray *recentPhotosArray = [userDefaults objectForKey:MOST_RECENT_PHOTOS_VIEWED_KEY];
+    NSMutableArray *temp;
+    if (!recentPhotosArray){
+        temp = [[NSMutableArray alloc] initWithCapacity:1];
+    }else{
+        temp = [[NSMutableArray alloc] initWithArray:recentPhotosArray];
+    }
+    if (temp.count > MAX_MOST_RECENT_VIEWED_COUNT-1) {
+        [temp removeObjectAtIndex:0];
+    }
+    if ([[temp valueForKey:FLICKR_PHOTO_PHOTO_URL] containsObject:photo.photoUrl.absoluteString]){
+        return;
+    }
+    NSString *title = photo.title ? photo.title: @"";
+    NSString *description = photo.description ? photo.description: @"";
+    [temp addObject:@{FLICKR_PHOTO_TITLE:title, FLICKR_PHOTO_DESCRIPTION:description, FLICKR_PHOTO_PHOTO_URL:photo.photoUrl.absoluteString, FLICKR_PHOTO_DATE_VIEWED:[NSDate date]}];
+    NSLog(@"TEMP ARRAY: %@",temp);
+    [userDefaults setObject:temp forKey:MOST_RECENT_PHOTOS_VIEWED_KEY];
+    [userDefaults synchronize];
 }
 
 @end

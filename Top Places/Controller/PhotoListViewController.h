@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Photo.h"
 
 @interface PhotoListViewController : UITableViewController
 
 @property (strong, nonatomic) __block NSArray *photoArray;
 
+- (void)saveToRecentViewedPhotos:(Photo *)photo;
+- (void)getPhotos;
 @end

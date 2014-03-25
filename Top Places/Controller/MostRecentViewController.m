@@ -14,66 +14,17 @@
 
 @implementation MostRecentViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (void)getPhotos
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *tempPhotos = [[NSMutableArray alloc] initWithCapacity:MAX_MOST_RECENT_VIEWED_COUNT];
+    if ([[userDefaults objectForKey:MOST_RECENT_PHOTOS_VIEWED_KEY] isKindOfClass:[NSArray class]]){
+        for (NSDictionary *photoDict in [userDefaults objectForKey:MOST_RECENT_PHOTOS_VIEWED_KEY]){
+            [tempPhotos addObject:[Photo photoWithDictionary:photoDict]];
+        }
+        self.photoArray = [tempPhotos copy];
     }
-    return self;
+    [self.tableView reloadData];
 }
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return 1;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLE_CELL_ID_MOST_RECENT forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

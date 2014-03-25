@@ -31,6 +31,13 @@
     [self.scrollView addSubview:self.imageView];
 }
 
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    [self autoZoom];
+}
+
 - (UIImageView *)imageView
 {
     if (!_imageView){
@@ -45,11 +52,48 @@
     
     // had to add these two lines in Shutterbug to fix a bug in "reusing" ImageViewController's MVC
     self.scrollView.zoomScale = 1.0;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
     
     // self.scrollView could be nil on the next line if outlet-setting has not happened yet
     self.scrollView.contentSize = image ? image.size : CGSizeZero;
+    [self autoZoom];
+    
+}
 
+- (void)autoZoom
+{
+    
+    float scaleFactor;
+    CGRect zoomRect;
+    //landscape orientation
+    if (self.view.frame.size.width > self.view.frame.size.height){
+        
+        zoomRect = CGRectMake(0, 0, <#CGFloat width#>, <#CGFloat height#>)
+        
+        scaleFactor = self.view.frame.size.width/self.imageView.frame.size.width;
+        if (self.imageView.frame.size.width > self.view.frame.size.width){
+            zoomRect = CGRectMake(0.0f, 0.0f, self.imageView.frame.size.width, self.imageView.frame
+                                  .size.height*scaleFactor);
+        }else{
+            zoomRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.imageView.frame
+                                  .size.height*scaleFactor);
+        }
+
+    }else{
+        
+        scaleFactor = self.view.frame.size.height/self.imageView.frame.size.height;
+        if (self.imageView.frame.size.height > self.view.frame.size.height){
+            zoomRect = CGRectMake(0.0f, 0.0f, self.imageView.frame.size.width*scaleFactor, self.imageView.frame
+                                  .size.height);
+        }else{
+            zoomRect = CGRectMake(0.0f, 0.0f, self.imageView.frame.size.width*scaleFactor, self.view.frame
+                                  .size.height);
+        }
+
+    }
+    [self.scrollView zoomToRect:zoomRect animated:YES];
+    NSLog(@"frame: width: %f height: %f",self.view.frame.size.width, self.view.frame.size.height);
 }
 
 - (void)setScrollView:(UIScrollView *)scrollView
@@ -57,7 +101,7 @@
     _scrollView = scrollView;
     
     // next three lines are necessary for zooming
-    _scrollView.minimumZoomScale = 0.2;
+    _scrollView.minimumZoomScale = 0.01;
     _scrollView.maximumZoomScale = 2.0;
     _scrollView.delegate = self;
     
@@ -82,7 +126,7 @@
         self.progressView.progress = 0.0f;
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:[FlickrFetcher URLforPhoto:@{@"farm":self.photo.farm, @"server":self.photo.server, @"id":self.photo.photoId, @"secret":self.photo.secret, @"originalsecret":self.photo.originalSecret, @"originalformat":self.photo.originalFormat} format:FlickrPhotoFormatOriginal]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:self.photo.photoUrl];
         
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
         
