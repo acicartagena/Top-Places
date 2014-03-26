@@ -20,8 +20,8 @@
     photo.farm = photoDict[@"farm"];
     photo.server = photoDict[@"server"];
     photo.secret = photoDict[@"secret"];
-    photo.originalSecret = photoDict[@"originalsecret"];
-    photo.originalFormat = photoDict[@"originalformat"];
+    photo.originalSecret = photoDict[@"originalsecret"] ? photoDict[@"originalsecret"]: @"";
+    photo.originalFormat = photoDict[@"originalformat"] ? photoDict[@"originalformat"]: @"";
     photo.owner = photoDict[@"ownername"];
     photo.photoUrl = photoDict[FLICKR_PHOTO_PHOTO_URL] ? [NSURL URLWithString:photoDict[FLICKR_PHOTO_PHOTO_URL]]:nil;
     

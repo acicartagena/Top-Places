@@ -45,6 +45,22 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // get the Detail view controller in our UISplitViewController (nil if not in one)
+    id detail = self.splitViewController.viewControllers[1];
+    // if Detail is a UINavigationController, look at its root view controller to find it
+    if ([detail isKindOfClass:[UINavigationController class]]) {
+        detail = [((UINavigationController *)detail).viewControllers firstObject];
+    }
+    // is the Detail is an ImageViewController?
+    if ([detail isKindOfClass:[PhotoViewController class]]) {
+        Photo *photo = self.photoArray[indexPath.row];
+        ((PhotoViewController *)detail).photo = photo;
+        ((PhotoViewController *)detail).navigationItem.title = photo.title;
+    }
+}
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation

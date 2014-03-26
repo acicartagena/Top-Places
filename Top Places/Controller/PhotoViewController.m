@@ -29,14 +29,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.scrollView addSubview:self.imageView];
+    self.progressView.hidden = YES;
 }
 
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
-    [self autoZoom];
+    [self setImage:self.image];
+//    [self autoZoom];
 }
+
 
 - (UIImageView *)imageView
 {
@@ -48,12 +50,14 @@
 
 - (void)setImage:(UIImage *)image
 {
+    _image = image;
     self.imageView.image = image;
     
     // had to add these two lines in Shutterbug to fix a bug in "reusing" ImageViewController's MVC
     self.scrollView.zoomScale = 1.0;
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    self.imageView.center = self.scrollView.center;
     
     // self.scrollView could be nil on the next line if outlet-setting has not happened yet
     self.scrollView.contentSize = image ? image.size : CGSizeZero;
@@ -63,37 +67,10 @@
 
 - (void)autoZoom
 {
-    
-    float scaleFactor;
-    CGRect zoomRect;
-    //landscape orientation
-    if (self.view.frame.size.width > self.view.frame.size.height){
-        
-        zoomRect = CGRectMake(0, 0, <#CGFloat width#>, <#CGFloat height#>)
-        
-        scaleFactor = self.view.frame.size.width/self.imageView.frame.size.width;
-        if (self.imageView.frame.size.width > self.view.frame.size.width){
-            zoomRect = CGRectMake(0.0f, 0.0f, self.imageView.frame.size.width, self.imageView.frame
-                                  .size.height*scaleFactor);
-        }else{
-            zoomRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.imageView.frame
-                                  .size.height*scaleFactor);
-        }
 
-    }else{
-        
-        scaleFactor = self.view.frame.size.height/self.imageView.frame.size.height;
-        if (self.imageView.frame.size.height > self.view.frame.size.height){
-            zoomRect = CGRectMake(0.0f, 0.0f, self.imageView.frame.size.width*scaleFactor, self.imageView.frame
-                                  .size.height);
-        }else{
-            zoomRect = CGRectMake(0.0f, 0.0f, self.imageView.frame.size.width*scaleFactor, self.view.frame
-                                  .size.height);
-        }
-
-    }
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    CGRect zoomRect = CGRectMake(0.0f, 0.0f, UIDeviceOrientationIsLandscape(orientation) ? self.imageView.frame.size.width : self.view.frame.size.width, UIDeviceOrientationIsLandscape(orientation) ? self.view.frame.size.height : self.imageView.frame.size.height);
     [self.scrollView zoomToRect:zoomRect animated:YES];
-    NSLog(@"frame: width: %f height: %f",self.view.frame.size.width, self.view.frame.size.height);
 }
 
 - (void)setScrollView:(UIScrollView *)scrollView
@@ -190,5 +167,37 @@ expectedTotalBytes:(int64_t)expectedTotalBytes
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - UISplitViewControllerDelegate
+
+// this section added during Shutterbug demo
+
+- (void)awakeFromNib
+{
+    self.splitViewController.delegate = self;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc
+   shouldHideViewController:(UIViewController *)vc
+              inOrientation:(UIInterfaceOrientation)orientation
+{
+    return UIInterfaceOrientationIsPortrait(orientation);
+}
+
+- (void)splitViewController:(UISplitViewController *)svc
+     willHideViewController:(UIViewController *)aViewController
+          withBarButtonItem:(UIBarButtonItem *)barButtonItem
+       forPopoverController:(UIPopoverController *)pc
+{
+    barButtonItem.title = aViewController.title;
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}
+
+- (void)splitViewController:(UISplitViewController *)svc
+     willShowViewController:(UIViewController *)aViewController
+  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    self.navigationItem.leftBarButtonItem = nil;
+}
 
 @end
