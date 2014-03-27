@@ -53,11 +53,10 @@
     _image = image;
     self.imageView.image = image;
     
-    // had to add these two lines in Shutterbug to fix a bug in "reusing" ImageViewController's MVC
+
     self.scrollView.zoomScale = 1.0;
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-    self.imageView.center = self.scrollView.center;
     
     // self.scrollView could be nil on the next line if outlet-setting has not happened yet
     self.scrollView.contentSize = image ? image.size : CGSizeZero;
@@ -78,8 +77,8 @@
     _scrollView = scrollView;
     
     // next three lines are necessary for zooming
-    _scrollView.minimumZoomScale = 0.01;
-    _scrollView.maximumZoomScale = 2.0;
+    _scrollView.minimumZoomScale = 0.1;
+    _scrollView.maximumZoomScale = 6.0;
     _scrollView.delegate = self;
     
     // next line is necessary in case self.image gets set before self.scrollView does
@@ -169,9 +168,6 @@ expectedTotalBytes:(int64_t)expectedTotalBytes
 */
 
 #pragma mark - UISplitViewControllerDelegate
-
-// this section added during Shutterbug demo
-
 - (void)awakeFromNib
 {
     self.splitViewController.delegate = self;

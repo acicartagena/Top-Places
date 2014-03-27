@@ -98,7 +98,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXe-tF-nFu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1468" y="749"/>
+            <point key="canvasLocation" x="1749" y="749"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="hhG-ku-xR1">
@@ -260,6 +260,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jVY-su-986"/>
+        <segue reference="0j2-2E-AVk"/>
     </inferredMetricsTieBreakers>
 </document>

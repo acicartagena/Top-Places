@@ -38,6 +38,7 @@ static NSString *const SUBTITLE_KEY = @"subtitle location";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Top Places";
     [self getPhotos];
     
 }

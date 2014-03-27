@@ -14,6 +14,12 @@
 
 @implementation MostRecentViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.title = @"Most Recent";
+}
+
 - (void)getPhotos
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
