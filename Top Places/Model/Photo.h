@@ -2,27 +2,25 @@
 //  Photo.h
 //  Top Places
 //
-//  Created by Angela Cartagena on 3/24/14.
+//  Created by Angela Cartagena on 3/28/14.
 //  Copyright (c) 2014 acicartagena. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Photo : NSObject
+@class Photographer, Region;
 
-@property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *description;
-@property (strong, nonatomic) NSURL *photoUrl;
+@interface Photo : NSManagedObject
 
-@property (strong, nonatomic) NSNumber *farm;
-@property (strong, nonatomic) NSNumber *server;
-@property (strong, nonatomic) NSString *photoId;
-@property (strong, nonatomic) NSString *secret;
-@property (strong, nonatomic) NSString *originalSecret;
-
-@property (strong, nonatomic) NSString *originalFormat;
-@property (strong, nonatomic) NSString *owner;
-
-+ (id)photoWithDictionary:(NSDictionary *)photoDict;
+@property (nonatomic, retain) NSString * photoUrl;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * subtitle;
+@property (nonatomic, retain) NSString * photoId;
+@property (nonatomic, retain) NSData * thumbnail;
+@property (nonatomic, retain) NSString * thumbnailUrl;
+@property (nonatomic, retain) NSDate * lastViewed;
+@property (nonatomic, retain) Region *region;
+@property (nonatomic, retain) Photographer *photographer;
 
 @end

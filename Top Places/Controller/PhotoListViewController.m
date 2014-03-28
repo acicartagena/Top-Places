@@ -70,7 +70,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         if (indexPath) {
             PhotoViewController *vc = [segue destinationViewController];
-            //TODO: coredata please
+
             Photo* photo =self.photoArray[indexPath.row];
             vc.photo = photo;
             vc.navigationItem.title = vc.photo.title;
