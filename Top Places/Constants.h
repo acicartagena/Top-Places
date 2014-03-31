@@ -19,6 +19,7 @@ static NSString *const SEGUE_PHOTO = @"Get Photo";
 
 static int const MAX_PLACE_PHOTOS_COUNT = 50;
 static int const MAX_MOST_RECENT_VIEWED_COUNT = 20;
+static int const BACKGROUND_SESSION_FETCH_INTERVAL = 20*60;
 
 static NSString *const MOST_RECENT_PHOTOS_VIEWED_KEY = @"MostRecentPhotosViewedArray";
 

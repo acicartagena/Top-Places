@@ -52,10 +52,19 @@ static FlickrFetchManager *_instance = nil;
             [self.backgroundSessionTimer invalidate];
             self.backgroundSessionTimer = nil;
             
-            
+            self.backgroundSessionTimer = [NSTimer scheduledTimerWithTimeInterval:BACKGROUND_SESSION_FETCH_INTERVAL
+                                                                           target:self
+                                                                         selector:@selector(startBackgroundSessionFlickrFetch:)
+                                                                         userInfo:nil
+                                                                          repeats:YES];
         }];
     }
     return self;
+}
+
+- (void)startBackgroundSessionFlickrFetch:(NSTimer *)timer
+{
+    [self startBackgroundSessionFlickrFetch];
 }
 
 - (void)startBackgroundSessionFlickrFetch

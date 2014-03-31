@@ -13,5 +13,4 @@
 
 @property (strong, nonatomic) __block NSArray *photoArray;
 
-- (void)getPhotos;
 @end

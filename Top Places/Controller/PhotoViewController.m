@@ -102,7 +102,7 @@
         self.progressView.progress = 0.0f;
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:self.photo.photoUrl];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.photo.photoUrl]];
         
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
         

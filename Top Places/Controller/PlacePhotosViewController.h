@@ -15,6 +15,4 @@
 @property (strong, nonatomic) Region *region;
 @property (strong, nonatomic) NSString *placeId;
 
-
-
 @end

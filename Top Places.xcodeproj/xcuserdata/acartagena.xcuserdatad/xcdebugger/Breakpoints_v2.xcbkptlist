@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Top Places/Controller/TopPlacesViewController.m"
-            timestampString = "417952658.411336"
+            timestampString = "417957595.082734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143">
+            startingLineNumber = "93"
+            endingLineNumber = "93">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Top Places/Controller/TopPlacesViewController.m"
-            timestampString = "417952658.411336"
+            timestampString = "417957595.082734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161">
+            startingLineNumber = "111"
+            endingLineNumber = "111">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -38,11 +38,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Top Places/Controller/TopPlacesViewController.m"
-            timestampString = "417952658.411336"
+            timestampString = "417957595.082734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156">
+            startingLineNumber = "106"
+            endingLineNumber = "106">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Top Places/Controller/PhotoListViewController.m"
-            timestampString = "417507980.862398"
+            timestampString = "417959098.689735"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Top Places/Controller/PhotoListViewController.m"
-            timestampString = "417507980.862398"
+            timestampString = "417959098.689735"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Top Places/Controller/PhotoListViewController.m"
-            timestampString = "417507980.862398"
+            timestampString = "417959098.689735"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -401,7 +401,7 @@
                   symbolName = "+[Photo(Flickr) loadPhotosFromFlickrArray:intoManagedObjectContext:]"
                   moduleName = "Top Places"
                   urlString = "file:///Users/acartagena/Projects/Top%20Places/Top%20Places/Model/Photo+Flickr.m"
-                  timestampString = "417955544.452014"
+                  timestampString = "417959098.98682"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "80"
@@ -415,7 +415,7 @@
                   symbolName = "+[Photo(Flickr) loadPhotosFromFlickrArray:intoManagedObjectContext:]"
                   moduleName = "Top Places"
                   urlString = "file:///Users/acartagena/Projects/Top%20Places/Top%20Places/Model/Photo+Flickr.m"
-                  timestampString = "417955544.452249"
+                  timestampString = "417959098.987131"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "80"
@@ -480,11 +480,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Top Places/Model/FlickrFetchManager.m"
-            timestampString = "417952774.22662"
+            timestampString = "417957595.082734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "-URLSession:downloadTask:didFinishDownloadingToURL:"
             landmarkType = "5">
          </BreakpointContent>
@@ -511,7 +511,7 @@
                   symbolName = "-[FlickrDBManager openOrCreateManagedDocument:]"
                   moduleName = "Top Places"
                   urlString = "file:///Users/acartagena/Projects/Top%20Places/Top%20Places/Model/FlickrDBManager.m"
-                  timestampString = "417955544.45303"
+                  timestampString = "417959098.987914"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "50"
@@ -525,7 +525,7 @@
                   symbolName = "__47-[FlickrDBManager openOrCreateManagedDocument:]_block_invoke"
                   moduleName = "Top Places"
                   urlString = "file:///Users/acartagena/Projects/Top%20Places/Top%20Places/Model/FlickrDBManager.m"
-                  timestampString = "417955544.453495"
+                  timestampString = "417959098.988285"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "51"
@@ -542,11 +542,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Top Places/Controller/TopPlacesViewController.m"
-            timestampString = "417952658.411336"
+            timestampString = "417957595.082734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -612,6 +612,70 @@
             startingLineNumber = "28"
             endingLineNumber = "28"
             landmarkName = "-applicationWillResignActive:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Top Places/Controller/TopPlacesViewController.m"
+            timestampString = "417958276.895988"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "-prepareForSegue:sender:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Top Places/Controller/PlacePhotosViewController.m"
+            timestampString = "417958282.516848"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Top Places/Controller/PhotoListViewController.m"
+            timestampString = "417959098.689735"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Top Places/Controller/PhotoListViewController.m"
+            timestampString = "417959098.689735"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

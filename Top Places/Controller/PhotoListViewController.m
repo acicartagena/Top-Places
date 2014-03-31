@@ -22,25 +22,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self getPhotos];
+
 }
+
 
 #pragma mark - Table view data source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return [self.photoArray count];
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLE_CELL_PHOTO forIndexPath:indexPath];
     
     // Configure the cell...
-    Photo *photo = self.photoArray[indexPath.row];
+    Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = photo.title;
-    cell.detailTextLabel.text = photo.description;
+    cell.detailTextLabel.text = photo.subtitle;
     
     return cell;
 }
