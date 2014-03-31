@@ -7,15 +7,18 @@
 //
 
 #import "AppDelegate.h"
+#import "FlickrDBManager.h"
+#import "FlickrFetchManager.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    // Override point for customization after application launch.
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
+    //set up context
+    [FlickrDBManager sharedDBManager];
+    
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    
     return YES;
 }
 

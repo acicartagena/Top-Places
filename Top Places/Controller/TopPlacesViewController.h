@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PhotoListViewController.h"
+#import "CoreDataTableViewController.h"
 
-@interface TopPlacesViewController : UITableViewController
+@interface TopPlacesViewController : CoreDataTableViewController
 
 @end

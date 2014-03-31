@@ -21,3 +21,5 @@ static NSString *const MOST_RECENT_PHOTOS_VIEWED_KEY = @"MostRecentPhotosViewedA
 
 static NSString *const FLICKR_PHOTO_PHOTO_URL = @"photoUrl";
 static NSString *const FLICKR_PHOTO_DATE_VIEWED = @"dateViewed";
+
+static NSString *const APP_BACKGROUND_PHOTO_FETCH = @"TopPlacesPhotoFetch";

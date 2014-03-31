@@ -74,16 +74,9 @@
             Photo* photo =self.photoArray[indexPath.row];
             vc.photo = photo;
             vc.navigationItem.title = vc.photo.title;
-            
-            [self saveToRecentViewedPhotos:photo];
-            
         }
     }
 }
 
-- (void)saveToRecentViewedPhotos:(Photo *)photo
-{
-    return;
-}
 
 @end

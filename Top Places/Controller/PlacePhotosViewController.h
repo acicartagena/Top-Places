@@ -7,12 +7,12 @@
 //
 
 #import "PhotoListViewController.h"
-#import "Place.h"
+#import "Region.h"
 
 @interface PlacePhotosViewController : PhotoListViewController
 
 
-@property (strong, nonatomic) Place *place;
+@property (strong, nonatomic) Region *region;
 @property (strong, nonatomic) NSString *placeId;
 
 
