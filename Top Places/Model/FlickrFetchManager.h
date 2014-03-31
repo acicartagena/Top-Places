@@ -10,4 +10,9 @@
 
 @interface FlickrFetchManager : NSObject <NSURLSessionDownloadDelegate>
 
++ (instancetype)sharedFetchManager;
+
+- (void)startBackgroundSessionFlickrFetch;
+- (dispatch_queue_t)getPlaceInfoQueue;
+
 @end

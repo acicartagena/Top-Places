@@ -2,7 +2,7 @@
 //  Photo.m
 //  Top Places
 //
-//  Created by Angela Cartagena on 3/28/14.
+//  Created by Angela Cartagena on 3/31/14.
 //  Copyright (c) 2014 acicartagena. All rights reserved.
 //
 
@@ -13,14 +13,14 @@
 
 @implementation Photo
 
-@dynamic photoUrl;
-@dynamic title;
-@dynamic subtitle;
+@dynamic lastViewed;
 @dynamic photoId;
+@dynamic photoUrl;
+@dynamic subtitle;
 @dynamic thumbnail;
 @dynamic thumbnailUrl;
-@dynamic lastViewed;
-@dynamic region;
+@dynamic title;
 @dynamic photographer;
+@dynamic region;
 
 @end

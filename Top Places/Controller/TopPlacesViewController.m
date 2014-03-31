@@ -9,7 +9,9 @@
 #import "TopPlacesViewController.h"
 #import "PlacePhotosViewController.h"
 #import "FlickrFetcher.h"
-#import "Place.h"
+#import "FlickrDBManager.h"
+#import "Photo.h"
+
 
 static NSString *const PLACE_ID_KEY = @"place_id";
 static NSString *const TITLE_KEY = @"title location";
@@ -20,7 +22,7 @@ static NSString *const SUBTITLE_KEY = @"subtitle location";
 
 @property (strong, nonatomic) __block NSMutableArray *places;
 @property (strong, nonatomic) NSArray *countries;
-@property (strong, nonatomic) Place *selectedPlace;
+
 
 @end
 
@@ -39,50 +41,22 @@ static NSString *const SUBTITLE_KEY = @"subtitle location";
 {
     [super viewDidLoad];
     self.title = @"Top Places";
+    self.debug = YES;
+    [[NSNotificationCenter defaultCenter] addObserverForName:NOTIFICATION_CONTEXT_IS_AVAILABLE object:nil queue:nil usingBlock:^(NSNotification *note) {
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
+        request.predicate = [NSPredicate predicateWithFormat:@"name != nil"];
+        request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"photographerCount" ascending:NO], [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+        request.fetchLimit = 50;
+        
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                            managedObjectContext:note.userInfo[CONTEXT_KEY]
+                                                                              sectionNameKeyPath:nil
+                                                                                       cacheName:nil];
+        [self.tableView reloadData];
+    }];
     
 }
-//
-//- (void)getPhotos
-//{
-//    NSURL *url = [FlickrFetcher URLforTopPlaces];
-//    
-//    NSURLSessionConfiguration *config = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
-//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-//    NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//        NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-//        NSLog(@"data: %@", dataDictionary);
-//        
-//        //parse data
-//        //TODO: coredata please
-//        if ([dataDictionary isKindOfClass:[NSDictionary class]] && [dataDictionary[@"places"] isKindOfClass:[NSDictionary class]]){
-//            NSMutableArray *tempPlaces = [[NSMutableArray alloc] init];
-//            for (NSDictionary *placeDict in [dataDictionary valueForKeyPath:FLICKR_RESULTS_PLACES]){
-//                [tempPlaces addObject:[Place placeWithDictionary:placeDict]];
-//            }
-//            
-//            NSArray *countries = [[tempPlaces valueForKeyPath:@"@distinctUnionOfObjects.country"] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-//            for (NSString *keyCountry in countries){
-//                NSArray *placesInCountry = [tempPlaces filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"country = %@",keyCountry]];
-//                [self.places addObject:@{@"country":keyCountry,@"places":placesInCountry}];
-//            }
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self.tableView reloadData];
-//                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//            });
-//        }
-//    }];
-//    [task resume];
-//}
 
-//- (NSMutableArray *)places
-//{
-//    if (!_places){
-//        _places = [[NSMutableArray alloc] initWithCapacity:100];
-//    }
-//    return _places;
-//}
 
 #pragma mark - Table view data source
 
@@ -92,7 +66,7 @@ static NSString *const SUBTITLE_KEY = @"subtitle location";
     
     Region *region = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = region.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%i photographers",region.photographer.count];
+    cell.detailTextLabel.text = [region.photographerCount integerValue] > 1 ? [NSString stringWithFormat:@"%i active photographers",[region.photographerCount integerValue]]:[NSString stringWithFormat:@"%i active photographer",[region.photographerCount integerValue]];
     
     return cell;
 }

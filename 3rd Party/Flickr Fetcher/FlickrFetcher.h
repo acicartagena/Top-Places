@@ -28,6 +28,8 @@
 #define FLICKR_LONGITUDE @"longitude"
 #define FLICKR_TAGS @"tags"
 
+#define FLICKR_PLACE_REGION_PLACE_ID @"place.region.place_id"
+
 typedef enum {
 	FlickrPhotoFormatSquare = 1,    // thumbnail
 	FlickrPhotoFormatLarge = 2,     // normal size

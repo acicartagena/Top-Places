@@ -8,8 +8,11 @@
 
 #import "Region+Flickr.h"
 #import "FlickrFetcher.h"
+#import "FlickrFetchManager.h"
+#import "FlickrDBManager.h"
 
 @implementation Region (Flickr)
+
 
 + (Region *)regionWithPlaceId:(NSString *)placeId inManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -18,25 +21,10 @@
     if (![placeId length]){
         return region;
     }
-
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
-    request.predicate = [NSPredicate predicateWithFormat:@" placeId == %@", placeId];
-    
-    NSError *error;
-    NSArray *matches = [context executeFetchRequest:request error:&error];
-    
-    if (!matches){
-        //handle error
-    }else if (matches.count > 0){
-        region = matches.lastObject;
-        if (!region.name){
-            [region fetchAndUpdateRegionName];
-        }
-    }else{
-        region = [NSEntityDescription insertNewObjectForEntityForName:@"Region" inManagedObjectContext:context];
-        region.placeId = placeId;
-        [region fetchAndUpdateRegionName];
-    }
+    region = [NSEntityDescription insertNewObjectForEntityForName:@"Region" inManagedObjectContext:context];
+    region.placeId = placeId;
+    region.photographerCount = @1;
+    [region fetchAndUpdateRegionName];
 
     return region;
     
@@ -46,17 +34,46 @@
 {
     NSURL *fetchRegionName = [FlickrFetcher URLforInformationAboutPlace:self.placeId];
     NSLog(@"Region+Flickr: fetchAndUpdateRegionName: url: %@",fetchRegionName);
-    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
-    NSURLSessionDataTask *task = [session dataTaskWithURL:fetchRegionName completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-        NSLog(@"data: %@", dataDictionary);
-        
-        if ([dataDictionary isKindOfClass:[NSDictionary class]]){
-            self.name = [FlickrFetcher extractRegionNameFromPlaceInformation:dataDictionary];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    dispatch_queue_t fetchQ = [[FlickrFetchManager sharedFetchManager] getPlaceInfoQueue];
+    dispatch_async(fetchQ, ^{
+
+        NSData *jsonResults = [NSData dataWithContentsOfURL:fetchRegionName];
+        if (!jsonResults){
+            return;
         }
-    }];
-    [task resume];
+        
+        NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonResults options:0 error:NULL];
+        if (![dataDictionary isKindOfClass:[NSDictionary class]]){
+            return;
+        }
+        
+        NSString *regionName = [FlickrFetcher extractRegionNameFromPlaceInformation:dataDictionary];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
+        request.predicate = [NSPredicate predicateWithFormat:@"name == %@", regionName];
+        NSError *error;
+        NSArray *array = [weakSelf.managedObjectContext executeFetchRequest:request error:&error];
+        if (!array){
+            return;
+        }
+        
+        [self.managedObjectContext performBlockAndWait:^{
+            if (array.count > 0){
+                Region *originalRegion = [array lastObject];
+                [originalRegion addPhoto:weakSelf.photo];
+                [originalRegion addPhotographer:weakSelf.photographer];
+                originalRegion.placeId = [dataDictionary valueForKeyPath:FLICKR_PLACE_REGION_PLACE_ID];
+                originalRegion.photographerCount = @(weakSelf.photographer.count + [originalRegion.photographerCount intValue]);
+                [weakSelf.managedObjectContext deleteObject:weakSelf];
+//                [[FlickrDBManager sharedDBManager] forceSaveUIManagedDocumentInContextBlock:YES];
+            }else{
+                weakSelf.name = regionName;
+                [[FlickrDBManager sharedDBManager] forceSaveUIManagedDocumentInContextBlock:YES];
+            }
+        }];
+    });
 }
 
 @end

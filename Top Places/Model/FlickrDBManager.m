@@ -7,11 +7,12 @@
 //
 
 #import "FlickrDBManager.h"
+#import "XXManagedDocument.h"
 
 @interface FlickrDBManager ()
 
 @property (nonatomic, readwrite) BOOL isDocumentReady;
-@property (strong, nonatomic) UIManagedDocument *document;
+@property (strong, nonatomic) NSURL *url;
 
 @end
 
@@ -32,9 +33,12 @@ static FlickrDBManager *_instance = nil;
 {
     self = [super init];
     if (self){
-        NSURL *url = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject] URLByAppendingPathComponent:@"Flicrk"];
-        self.document = [[UIManagedDocument alloc] initWithFileURL:url];
+        self.url = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject] URLByAppendingPathComponent:@"Flickr"];
+        self.document = [[XXManagedDocument alloc] initWithFileURL:self.url];
+        self.document.persistentStoreOptions = @{NSMigratePersistentStoresAutomaticallyOption:@(YES),NSInferMappingModelAutomaticallyOption:@(YES)};
+        [self openOrCreateManagedDocument:self.url];
         self.isDocumentReady = NO;
+
     }
     return self;
 }
@@ -67,5 +71,38 @@ static FlickrDBManager *_instance = nil;
         self.context = self.document.managedObjectContext;
     }
 }
+
+- (void)setContext:(NSManagedObjectContext *)context
+{
+    _context = context;
+    if (context){
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CONTEXT_IS_AVAILABLE object:nil userInfo:@{CONTEXT_KEY:context}];
+    }
+    
+}
+
+- (void)forceSaveUIManagedDocumentInContextBlock:(BOOL) inContextBlock
+{
+    if (inContextBlock){
+        [self forceSaveUIManagedDocument];
+    }else{
+        if (self.context){
+            [self.context performBlockAndWait:^{
+                [self forceSaveUIManagedDocument];
+            }];
+        }
+    }
+}
+
+- (void)forceSaveUIManagedDocument
+{
+    [self.document updateChangeCount:UIDocumentChangeDone];
+    [self.document savePresentedItemChangesWithCompletionHandler:^(NSError *errorOrNil) {
+        if (errorOrNil){
+            NSLog(@"error on saving: %@", errorOrNil);
+        }
+    }];
+}
+
 
 @end

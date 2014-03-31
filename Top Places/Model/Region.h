@@ -2,7 +2,7 @@
 //  Region.h
 //  Top Places
 //
-//  Created by Angela Cartagena on 3/28/14.
+//  Created by Angela Cartagena on 3/31/14.
 //  Copyright (c) 2014 acicartagena. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * placeId;
+@property (nonatomic, retain) NSNumber * photographerCount;
 @property (nonatomic, retain) NSSet *photo;
 @property (nonatomic, retain) NSSet *photographer;
 @end

@@ -10,10 +10,12 @@
 
 @interface FlickrDBManager : NSObject
 
-
+@property (strong, nonatomic) UIManagedDocument *document;
 @property (nonatomic, readonly) BOOL isDocumentReady;
 @property (strong, nonatomic) NSManagedObjectContext *context;
 
 + (id)sharedDBManager;
+
+- (void)forceSaveUIManagedDocumentInContextBlock:(BOOL) inContextBlock;
 
 @end

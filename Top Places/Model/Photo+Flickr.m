@@ -9,7 +9,7 @@
 #import "Photo+Flickr.h"
 
 #import "FlickrFetcher.h"
-
+#import "FlickrDBManager.h"
 #import "Photographer+Flickr.h"
 #import "Region+Flickr.h"
 
