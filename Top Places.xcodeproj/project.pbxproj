@@ -343,6 +343,13 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = acicartagena;
 				TargetAttributes = {
+					5535DFB918D7E01400DA2CCC = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					5535DFD918D7E01400DA2CCC = {
 						TestTargetID = 5535DFB918D7E01400DA2CCC;
 					};

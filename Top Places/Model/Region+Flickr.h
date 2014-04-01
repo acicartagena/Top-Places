@@ -12,6 +12,7 @@
 
 + (Region *)regionWithPlaceId:(NSString *)placeId
        inManagedObjectContext:(NSManagedObjectContext *)context;
++ (dispatch_queue_t)getPlaceInfoQueue;
 
 - (void) fetchAndUpdateRegionName;
 

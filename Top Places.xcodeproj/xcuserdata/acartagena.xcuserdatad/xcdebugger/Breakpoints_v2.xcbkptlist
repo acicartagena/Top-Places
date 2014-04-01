@@ -401,7 +401,7 @@
                   symbolName = "+[Photo(Flickr) loadPhotosFromFlickrArray:intoManagedObjectContext:]"
                   moduleName = "Top Places"
                   urlString = "file:///Users/acartagena/Projects/Top%20Places/Top%20Places/Model/Photo+Flickr.m"
-                  timestampString = "417959098.98682"
+                  timestampString = "418046070.323421"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "80"
@@ -415,7 +415,7 @@
                   symbolName = "+[Photo(Flickr) loadPhotosFromFlickrArray:intoManagedObjectContext:]"
                   moduleName = "Top Places"
                   urlString = "file:///Users/acartagena/Projects/Top%20Places/Top%20Places/Model/Photo+Flickr.m"
-                  timestampString = "417959098.987131"
+                  timestampString = "418046070.323776"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "80"
@@ -476,22 +476,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Top Places/Model/FlickrFetchManager.m"
-            timestampString = "417957595.082734"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "-URLSession:downloadTask:didFinishDownloadingToURL:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -511,7 +495,7 @@
                   symbolName = "-[FlickrDBManager openOrCreateManagedDocument:]"
                   moduleName = "Top Places"
                   urlString = "file:///Users/acartagena/Projects/Top%20Places/Top%20Places/Model/FlickrDBManager.m"
-                  timestampString = "417959098.987914"
+                  timestampString = "418046070.324523"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "50"
@@ -525,7 +509,7 @@
                   symbolName = "__47-[FlickrDBManager openOrCreateManagedDocument:]_block_invoke"
                   moduleName = "Top Places"
                   urlString = "file:///Users/acartagena/Projects/Top%20Places/Top%20Places/Model/FlickrDBManager.m"
-                  timestampString = "417959098.988285"
+                  timestampString = "418046070.324837"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "51"
@@ -590,11 +574,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Top Places/AppDelegate.m"
-            timestampString = "417954513.598228"
+            timestampString = "418046070.033404"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "-applicationWillTerminate:"
             landmarkType = "5">
          </BreakpointContent>
@@ -618,7 +602,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Top Places/Controller/TopPlacesViewController.m"
@@ -634,7 +618,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Top Places/Controller/PlacePhotosViewController.m"
@@ -676,6 +660,38 @@
             startingLineNumber = "33"
             endingLineNumber = "33"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Top Places/Model/FlickrFetchManager.m"
+            timestampString = "418046070.033404"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "-startBackgroundSessionFlickrFetch:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Top Places/Model/FlickrFetchManager.m"
+            timestampString = "418046231.946098"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "-loadPhotosFromURL:withCompletionHandler:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

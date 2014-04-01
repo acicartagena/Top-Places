@@ -10,9 +10,11 @@
 
 @interface FlickrFetchManager : NSObject <NSURLSessionDownloadDelegate>
 
+@property (copy, nonatomic) void (^flickrDownloadBackgroundURLSessionCompletionHandler)();
+
 + (instancetype)sharedFetchManager;
 
 - (void)startBackgroundSessionFlickrFetch;
-- (dispatch_queue_t)getPlaceInfoQueue;
+- (void)startEphemeralSessionFlickrFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHanlder;
 
 @end
