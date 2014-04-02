@@ -4,7 +4,7 @@
 //
 //  Created by Angela Cartagena on 3/18/14.
 //  Copyright (c) 2014 acicartagena. All rights reserved.
-//
+//  :)
 
 #import "PhotoListViewController.h"
 #import "Photo.h"
