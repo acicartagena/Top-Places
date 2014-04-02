@@ -21,6 +21,7 @@ static int const MAX_PLACE_PHOTOS_COUNT = 50;
 static int const MAX_MOST_RECENT_VIEWED_COUNT = 20;
 static int const BACKGROUND_SESSION_FETCH_INTERVAL = 20*60;
 static int const EPHEMERAL_SESSION_TIMEOUT_INTERVAL = 10;
+static float const PHOTO_TABLE_VIEW_CELL_HEIGHT = 70.0f;
 
 static NSString *const MOST_RECENT_PHOTOS_VIEWED_KEY = @"MostRecentPhotosViewedArray";
 
@@ -34,3 +35,4 @@ static NSString *const NOTIFICATION_CONTEXT_IS_AVAILABLE = @"ContextIsReadyNotif
 static NSString *const CONTEXT_KEY = @"context";
 
 #define QUEUE_GET_PLACE_INFO "GetPlaceInfoQueue"
+#define QUEUE_GET_THUMBNAIL "GetThumbnailPhoto"

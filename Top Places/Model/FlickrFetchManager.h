@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Photo.h"
+
 
 @interface FlickrFetchManager : NSObject <NSURLSessionDownloadDelegate>
 

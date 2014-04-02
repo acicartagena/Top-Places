@@ -21,5 +21,7 @@
 
 + (void)loadPhotosFromFlickrArray:(NSArray *)photos // of Flickr NSDictionary
          intoManagedObjectContext:(NSManagedObjectContext *)context;
+- (UIImage *)getThumbnail;
+- (void)updateLastViewedDate:(NSDate *)date;
 
 @end

@@ -12,7 +12,7 @@
 
 - (id)contentsForType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 {
-    NSLog(@"Auto-Saving Document");
+    //NSLog(@"Auto-Saving Document");
     return [super contentsForType:typeName error:outError];
 }
 

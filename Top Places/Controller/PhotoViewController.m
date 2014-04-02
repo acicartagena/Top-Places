@@ -8,7 +8,7 @@
 
 #import "PhotoViewController.h"
 #import "FlickrFetcher.h"
-
+#import "Photo+Flickr.h"
 
 @interface PhotoViewController ()
 
@@ -30,6 +30,8 @@
     // Do any additional setup after loading the view.
     [self.scrollView addSubview:self.imageView];
     self.progressView.hidden = YES;
+    
+    [self.photo updateLastViewedDate:[NSDate date]];
 }
 
 - (void)viewWillLayoutSubviews
@@ -78,7 +80,7 @@
     
     // next three lines are necessary for zooming
     _scrollView.minimumZoomScale = 0.1;
-    _scrollView.maximumZoomScale = 6.0;
+    _scrollView.maximumZoomScale = 10.0;
     _scrollView.delegate = self;
     
     // next line is necessary in case self.image gets set before self.scrollView does

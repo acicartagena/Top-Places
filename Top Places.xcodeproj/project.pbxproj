@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55322FEB18EBB703005A7A1D /* PhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55322FEA18EBB703005A7A1D /* PhotoPreviewCell.m */; };
 		5535DFBE18D7E01400DA2CCC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5535DFBD18D7E01400DA2CCC /* Foundation.framework */; };
 		5535DFC018D7E01400DA2CCC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5535DFBF18D7E01400DA2CCC /* CoreGraphics.framework */; };
 		5535DFC218D7E01400DA2CCC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5535DFC118D7E01400DA2CCC /* UIKit.framework */; };
@@ -54,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		55322FE918EBB703005A7A1D /* PhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoPreviewCell.h; sourceTree = "<group>"; };
+		55322FEA18EBB703005A7A1D /* PhotoPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPreviewCell.m; sourceTree = "<group>"; };
 		5535DFBA18D7E01400DA2CCC /* Top Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Top Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5535DFBD18D7E01400DA2CCC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5535DFBF18D7E01400DA2CCC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -221,12 +224,12 @@
 		5535DFF218D7E0EC00DA2CCC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5535DFFF18D7ECE800DA2CCC /* TopPlacesViewController.h */,
+				5535E00018D7ECE800DA2CCC /* TopPlacesViewController.m */,
 				5535E01118D80FFA00DA2CCC /* PhotoListViewController.h */,
 				5535E01218D80FFA00DA2CCC /* PhotoListViewController.m */,
 				559C4B3F18E0421E00EDE738 /* PlacePhotosViewController.h */,
 				559C4B4018E0421E00EDE738 /* PlacePhotosViewController.m */,
-				5535DFFF18D7ECE800DA2CCC /* TopPlacesViewController.h */,
-				5535E00018D7ECE800DA2CCC /* TopPlacesViewController.m */,
 				5535E00218D7ED1500DA2CCC /* MostRecentViewController.h */,
 				5535E00318D7ED1500DA2CCC /* MostRecentViewController.m */,
 				60003CFA18E0862C00B9B8BF /* PhotoViewController.h */,
@@ -262,6 +265,8 @@
 			children = (
 				5535DFFB18D7EC5C00DA2CCC /* main.storyboard */,
 				5535DFFD18D7EC6B00DA2CCC /* main_ipad.storyboard */,
+				55322FE918EBB703005A7A1D /* PhotoPreviewCell.h */,
+				55322FEA18EBB703005A7A1D /* PhotoPreviewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 				559C4B4118E0421E00EDE738 /* PlacePhotosViewController.m in Sources */,
 				60003CFC18E0862C00B9B8BF /* PhotoViewController.m in Sources */,
 				5535E00118D7ECE800DA2CCC /* TopPlacesViewController.m in Sources */,
+				55322FEB18EBB703005A7A1D /* PhotoPreviewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

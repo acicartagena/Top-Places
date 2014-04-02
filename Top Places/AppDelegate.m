@@ -14,7 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //set up context
+    //set up context    
     [FlickrDBManager sharedDBManager];
     [[FlickrFetchManager sharedFetchManager] startBackgroundSessionFlickrFetch];
     

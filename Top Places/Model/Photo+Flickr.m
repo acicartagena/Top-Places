@@ -13,7 +13,18 @@
 #import "Photographer+Flickr.h"
 #import "Region+Flickr.h"
 
+static dispatch_queue_t _getThumbnailQueue;
+
 @implementation Photo (Flickr)
+
++ (dispatch_queue_t) getThumbnailQueue
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _getThumbnailQueue = dispatch_queue_create(QUEUE_GET_THUMBNAIL, DISPATCH_QUEUE_SERIAL);
+    });
+    return _getThumbnailQueue;
+}
 
 + (Photo *)photoWithFlickrInfo:(NSDictionary *)photoDictionary
         inManagedObjectContext:(NSManagedObjectContext *)context
@@ -44,9 +55,11 @@
                                           inManagedObjectContext:context];
     
     photo.photoId = photoDictionary[FLICKR_PHOTO_ID];
-    photo.title = [photoDictionary valueForKeyPath:FLICKR_PHOTO_TITLE];
+    photo.title = photoDictionary[FLICKR_PHOTO_TITLE];
     photo.subtitle = [photoDictionary valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
+    NSLog(@"photo title: %@ subtitle: %@", photo.title, photo.subtitle);
     photo.photoUrl = [[FlickrFetcher URLforPhoto:photoDictionary format:FlickrPhotoFormatLarge] absoluteString];
+    photo.thumbnailUrl = [[FlickrFetcher URLforPhoto:photoDictionary format:FlickrPhotoFormatSquare] absoluteString];
     
     NSString *photographerName = [photoDictionary valueForKeyPath:FLICKR_PHOTO_OWNER];
     photo.photographer = [Photographer photographerWithName:photographerName
@@ -64,22 +77,58 @@
 + (void)loadPhotosFromFlickrArray:(NSArray *)photos // of Flickr NSDictionary
          intoManagedObjectContext:(NSManagedObjectContext *)context
 {
+    //get existing photos, using photo ids
     NSArray *photoIds = [photos valueForKey:FLICKR_PHOTO_ID];
-    
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
     request.predicate = [NSPredicate predicateWithFormat:@" photoId in %@",photoIds];
-    
     NSError *error;
     NSArray *matches = [context executeFetchRequest:request error:&error];
     
-    NSMutableArray *photosMutable = [photos mutableCopy];
-    if (matches){
-        [photosMutable removeObjectsInArray:matches];
-    }
+    //filter array using retrieved photo ids
+    NSArray *matchesId = [matches valueForKey:@"photoId"];
+    NSPredicate *existingIdsPredicate = [NSPredicate predicateWithFormat:@" NOT (id in %@)", matchesId];
+    NSArray *photosToAdd = [photos filteredArrayUsingPredicate:existingIdsPredicate];
     
-    for (NSDictionary *photoDict in photosMutable){
+    for (NSDictionary *photoDict in photosToAdd){
         [Photo photoWithFlickrInfo:photoDict inManagedObjectContext:context checkIfExisting:NO];
     }
+}
+
+- (UIImage *)getThumbnail
+{
+    __block NSData *tempThumbnailData = self.thumbnail;
+    __weak typeof(self) weakSelf = self;
+    if (!tempThumbnailData){
+        dispatch_queue_t fetchQ = [[self class] getThumbnailQueue];
+        dispatch_async(fetchQ, ^{
+            
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            
+            tempThumbnailData = [NSData dataWithContentsOfURL:[NSURL URLWithString:weakSelf.thumbnailUrl]];
+            if (!tempThumbnailData){
+                return;
+            }
+            
+            [self.managedObjectContext performBlockAndWait:^{
+                weakSelf.thumbnail = tempThumbnailData;
+                [[FlickrDBManager sharedDBManager] forceSaveUIManagedDocumentInContextBlock:YES];
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
+            }];
+        });
+        return nil;
+    }
+    UIImage *tempThumbnail = [UIImage imageWithData:tempThumbnailData];
+    return tempThumbnail;
+}
+
+- (void)updateLastViewedDate:(NSDate *)date
+{
+    __weak typeof(self) weakSelf = self;
+    [self.managedObjectContext performBlockAndWait:^{
+        weakSelf.lastViewed = date;
+        [[FlickrDBManager sharedDBManager] forceSaveUIManagedDocumentInContextBlock:YES];
+    }];
 }
 
 @end

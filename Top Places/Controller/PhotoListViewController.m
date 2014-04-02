@@ -11,6 +11,8 @@
 #import "FlickrFetcher.h"
 #import "PhotoViewController.h"
 #import "PlacePhotosViewController.h"
+#import "PhotoPreviewCell.h"
+#import "Photo+Flickr.h"
 
 @interface PhotoListViewController ()
 
@@ -23,6 +25,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 
+    self.tableView.rowHeight = PHOTO_TABLE_VIEW_CELL_HEIGHT;
 }
 
 
@@ -30,12 +33,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLE_CELL_PHOTO forIndexPath:indexPath];
+    PhotoPreviewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLE_CELL_PHOTO forIndexPath:indexPath];
     
     // Configure the cell...
     Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = photo.title;
-    cell.detailTextLabel.text = photo.subtitle;
+    cell.photoTitleTextLabel.text= photo.title;
+    cell.subtitleTextLabel.text = photo.photoId;
+    cell.thumbnail.image = [photo getThumbnail];
     
     return cell;
 }
@@ -50,7 +54,7 @@
     }
     // is the Detail is an ImageViewController?
     if ([detail isKindOfClass:[PhotoViewController class]]) {
-        Photo *photo = self.photoArray[indexPath.row];
+        Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
         ((PhotoViewController *)detail).photo = photo;
         ((PhotoViewController *)detail).navigationItem.title = photo.title;
     }
@@ -66,7 +70,7 @@
         if (indexPath) {
             PhotoViewController *vc = [segue destinationViewController];
 
-            Photo* photo =self.photoArray[indexPath.row];
+            Photo* photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
             vc.photo = photo;
             vc.navigationItem.title = vc.photo.title;
         }

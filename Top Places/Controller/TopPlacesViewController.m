@@ -42,12 +42,24 @@ static NSString *const SUBTITLE_KEY = @"subtitle location";
     [super viewDidLoad];
     self.title = @"Top Places";
     self.debug = YES;
+    
+    //setup fetch results controller
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
+    request.predicate = [NSPredicate predicateWithFormat:@"name != nil"];
+    request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"photographerCount" ascending:NO], [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+    request.fetchLimit = MAX_PLACE_PHOTOS_COUNT;
+    
+    [self setupFetchResultsControllerWith:request];
+
+    //remove empty cells at end of the table
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    
+}
+
+- (void)setupFetchResultsControllerWith:(NSFetchRequest *)request
+{
     [[NSNotificationCenter defaultCenter] addObserverForName:NOTIFICATION_CONTEXT_IS_AVAILABLE object:nil queue:nil usingBlock:^(NSNotification *note) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
-        request.predicate = [NSPredicate predicateWithFormat:@"name != nil"];
-        request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"photographerCount" ascending:NO], [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
-        request.fetchLimit = 50;
-        
         self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                             managedObjectContext:note.userInfo[CONTEXT_KEY]
                                                                               sectionNameKeyPath:nil
@@ -55,6 +67,19 @@ static NSString *const SUBTITLE_KEY = @"subtitle location";
         [self.tableView reloadData];
     }];
     
+    NSManagedObjectContext *context = [[FlickrDBManager sharedDBManager] context];
+    if (!self.fetchedResultsController && context){
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                            managedObjectContext:context
+                                                                              sectionNameKeyPath:nil
+                                                                                       cacheName:nil];
+        [self.tableView reloadData];
+    }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_CONTEXT_IS_AVAILABLE object:nil];
 }
 
 

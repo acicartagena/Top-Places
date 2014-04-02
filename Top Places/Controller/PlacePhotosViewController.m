@@ -28,7 +28,6 @@
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.region.managedObjectContext sectionNameKeyPath:nil
                                                                                    cacheName:nil];
-//    [self.tableView reloadData];
 }
 
 

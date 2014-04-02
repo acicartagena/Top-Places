@@ -13,12 +13,10 @@
 #import "Region+Flickr.h"
 
 @interface FlickrFetchManager ()
-{
-    dispatch_queue_t _getPlaceInfoQueue;
-}
 
 @property (strong, nonatomic) NSURLSession *backgroundSession;
 @property (strong, nonatomic) NSURLSession *ephemeralSession;
+
 @property (strong, nonatomic) NSTimer *backgroundSessionTimer;
 
 @end
@@ -60,6 +58,7 @@ static FlickrFetchManager *_instance = nil;
                                                                          userInfo:nil
                                                                           repeats:YES];
         }];
+        
     }
     return self;
 }
@@ -108,6 +107,7 @@ static FlickrFetchManager *_instance = nil;
             }];
         }
     }];
+    [task resume];
 }
 
 - (void)loadPhotosFromURL:(NSURL *)localUrl withCompletionHandler:(void (^)()) completionHandler
@@ -154,6 +154,7 @@ static FlickrFetchManager *_instance = nil;
         }];
     }
 }
+
 
 #pragma mark - url session dleegates
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
